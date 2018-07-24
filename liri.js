@@ -13,16 +13,16 @@ var spotify = new Spotify(keys.spotify);
   var myArgs = process.argv.slice(2);
   //console.log('myArgs: ', myArgs);
   if (myArgs[0] == "my-tweets") {
-    var params = {screen_name: 'Robbery44220681'};
-    client.get('statuses/user_timeline', params, function(error, tweets, response) {
-      if (!error) {
-        console.log(JSON.parse(tweets).text);
-      }
-    });
- 
+    var options = { screen_name: 'Robbery44220681',
+    count: 20 };
+
+client.get('statuses/user_timeline', options , function(err, data) {
+for (var i = 0; i < data.length ; i++) {
+console.log(data[i].text);
+}
+})
 
 
-    // console.log("boyakasha");
   }
   else if (myArgs[0] == "this-movie"){
    // console.log(myArgs[1]);
