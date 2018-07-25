@@ -24,6 +24,42 @@ console.log(data[i].text);
 
 
   }
+  else if (myArgs[0] == "spotify-this-song"){
+ var query = "";
+ for (var i = 3; i < nodeArgs.length; i++) {
+ if (i > 3 && i < nodeArgs.length) {
+ query = query + "+" + nodeArgs[i];
+ //console.log(movieName);
+ }
+ else {
+   query += nodeArgs[i];
+ }
+    spotify.search({ type: "track", query:query}, function(err,data){
+      if (err) {
+        return console.log('Error occurred: ' + err);
+      }
+    
+    else if (!err) {
+      
+    console.log("Artist:" + data.tracks.items[0].album.artists[0].name); 
+    console.log("Song: " +  data.tracks.items[0].name);
+    console.log("Preview: " +  data.tracks.items[0].preview_url);
+    console.log("Album: " +  data.tracks.items[0].album.name);
+    }
+        })
+     
+      
+
+    /*else {
+      console.log("Artist: Ace of Base" ); 
+      console.log("Song: The Sign");
+      console.log("Preview: ");
+      console.log("Album:The Sign ");
+    }
+  
+  */
+  }
+}
   else if (myArgs[0] == "this-movie"){
    // console.log(myArgs[1]);
     var movieName = "";
@@ -56,5 +92,4 @@ console.log(data[i].text);
       
       }
     });
-
-      }
+  }
